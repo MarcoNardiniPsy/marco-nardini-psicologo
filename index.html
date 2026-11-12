@@ -787,4 +787,59 @@ section[id]{scroll-margin-top:96px}
 })();
 </script>
 
+
+<script>
+/* Eventi GA4: vengono inviati solo se Analytics è stato caricato dopo il consenso. */
+(function () {
+  function trackSiteEvent(eventName, eventParams) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, Object.assign({
+        event_category: 'engagement'
+      }, eventParams || {}));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Click sul pulsante WhatsApp.
+    document.querySelectorAll('a.whatsapp-float').forEach(function (link) {
+      link.addEventListener('click', function () {
+        trackSiteEvent('whatsapp_click', {event_label: 'Pulsante WhatsApp'});
+      });
+    });
+
+    // Selezione dell'ambito di prenotazione: non equivale a una prenotazione completata.
+    document.querySelectorAll('[data-booking-choice]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        trackSiteEvent('booking_click', {
+          booking_type: button.getAttribute('data-booking-choice') || 'non_specificato'
+        });
+      });
+    });
+
+    // Click sul numero di telefono.
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        trackSiteEvent('phone_click', {event_label: 'Link telefono'});
+      });
+    });
+
+    // Click sui collegamenti email.
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        trackSiteEvent('email_click', {event_label: 'Link email'});
+      });
+    });
+
+    // Click per aprire le indicazioni stradali.
+    document.querySelectorAll('a.map-link').forEach(function (link, index) {
+      link.addEventListener('click', function () {
+        trackSiteEvent('directions_click', {
+          location_number: String(index + 1)
+        });
+      });
+    });
+  });
+})();
+</script>
+
 </body></html>

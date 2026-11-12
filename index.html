@@ -331,18 +331,6 @@ header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(12px);background:
 @media(max-width:700px){.whatsapp-float{right:14px;bottom:76px;width:48px;height:48px}}
 
 
-/* Scelta dell'ambito prima della prenotazione: stile coordinato al sito */
-.booking-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:850px;margin:0 auto 14px}
-.booking-choice-button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;padding:18px 22px;border:1px solid #d7e0e5;border-radius:14px;background:#fff;color:#00171F;font:inherit;cursor:pointer;transition:border-color .18s ease,background-color .18s ease,box-shadow .18s ease}
-.booking-choice-button:hover{border-color:#003459;box-shadow:0 5px 16px rgba(0,23,31,.07)}
-.booking-choice-button[aria-pressed="true"]{border-color:#003459;background:#eaf0f3;box-shadow:inset 0 0 0 1px #003459}
-.booking-choice-title{font-family:Georgia,'Times New Roman',serif;font-size:19px}
-.booking-choice-description{font-size:13px;color:#52616b}
-.booking-choice-button:focus-visible{outline:3px solid #78a9c5;outline-offset:3px}
-.booking-choice-feedback{min-height:24px;margin:0 auto 20px;text-align:center;color:#40545b;font-size:13px}
-@media(max-width:600px){.booking-choice{grid-template-columns:1fr;gap:10px}.booking-choice-button{padding:15px 17px}.booking-choice-title{font-size:18px}}
-
-
 /* Azioni rapide per le sedi */
 .location-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
 .location-actions .map-link{margin-top:0}
@@ -369,7 +357,7 @@ section[id]{scroll-margin-top:96px}
 :where(a,button,input,textarea,summary,iframe):focus-visible{
   outline:3px solid #477da0;outline-offset:3px;
 }
-.menu-toggle,.copy-address,.visit-mode,.location-choice,.booking-choice-button,
+.menu-toggle,.copy-address,.visit-mode,.location-choice,
 .contact-form button,.back-to-top{min-height:44px}
 .contact-form input,.contact-form textarea{min-height:48px}
 .form-note{margin:0;text-align:center;color:#40545b;font-size:12px;line-height:1.5}
@@ -387,6 +375,61 @@ section[id]{scroll-margin-top:96px}
 .cookie-settings-link:focus-visible{outline:2px solid #78a9c5;outline-offset:4px;border-radius:2px}
 .cookie-current-status{font-size:12px!important;margin-top:-6px!important;color:#52616b!important}
 
+
+/* Prenotazione: contenitore del calendario più pulito e coordinato al sito */
+.booking-section{
+  padding: clamp(42px,6vw,76px) 0;
+  background: #f1f5f7;
+}
+.booking-calendar-wrap{
+  width: min(1080px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: clamp(22px,3.5vw,42px);
+  background: #fff;
+  border: 1px solid #d7e0e5;
+  border-radius: 20px;
+  box-shadow: 0 16px 42px rgba(0,23,31,.07);
+}
+.booking-calendar-heading{
+  max-width: 700px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.booking-calendar-heading h2{
+  margin: 10px 0 12px;
+  font-size: clamp(30px,3.6vw,40px);
+  color: #00171F;
+}
+.booking-calendar-heading p{
+  margin: 0;
+  color: #52616b;
+  font-size: 15px;
+}
+.booking-calendar-frame{
+  overflow: hidden;
+  border: 1px solid #e1e8ec;
+  border-radius: 14px;
+  background: #fff;
+}
+.booking-calendar-frame iframe{
+  display: block;
+  width: 100%;
+  min-height: 760px;
+  border: 0;
+  background: #fff;
+}
+@media(max-width:600px){
+  .booking-section{padding:36px 0}
+  .booking-calendar-wrap{
+    width: calc(100% - 24px);
+    padding: 22px 10px 12px;
+    border-radius: 15px;
+  }
+  .booking-calendar-heading{padding:0 8px;margin-bottom:20px}
+  .booking-calendar-frame{border-radius:10px}
+  .booking-calendar-frame iframe{height:780px;min-height:780px}
+}
+
 </style>
 <script type="application/ld+json">
 {
@@ -398,7 +441,6 @@ section[id]{scroll-margin-top:96px}
       "name": "Marco Nardini",
       "jobTitle": "Psicologo clinico e dello sport",
       "url": "https://www.marconardinipsicologo.com/",
-      "sameAs": ["https://share.google/Dt27u2YJ6jFXcjJRJ"],
       "email": "mailto:marconardini.psy@gmail.com",
       "telephone": "+393784056712",
       "hasCredential": {
@@ -579,21 +621,10 @@ section[id]{scroll-margin-top:96px}
   <div class="booking-calendar-wrap">
     <div class="booking-calendar-heading">
       <div class="eyebrow">Prenotazione online</div>
-      <h2>Prenota il primo colloquio</h2>
-      <p>Per iniziare, seleziona l'ambito per cui desideri un appuntamento. Potrai poi consultare le disponibilità nel calendario.</p>
+      <h2>Prenota un appuntamento</h2>
+      <p>Consulta le disponibilità e scegli il momento più adatto per il tuo primo colloquio.</p>
     </div>
-    <div class="booking-choice" role="group" aria-label="Seleziona l'ambito dell'appuntamento">
-      <button class="booking-choice-button" type="button" data-booking-choice="clinica" aria-pressed="false">
-        <span class="booking-choice-title">Colloquio psicologico</span>
-        <span class="booking-choice-description">Psicologia clinica</span>
-      </button>
-      <button class="booking-choice-button" type="button" data-booking-choice="sport" aria-pressed="false">
-        <span class="booking-choice-title">Consulenza in ambito sportivo</span>
-        <span class="booking-choice-description">Psicologia dello sport e mental training</span>
-      </button>
-    </div>
-    <p class="booking-choice-feedback" id="booking-choice-feedback" aria-live="polite">Seleziona una delle due opzioni per proseguire.</p>
-    <div class="booking-calendar-frame" id="booking-calendar">
+    <div class="booking-calendar-frame">
       <iframe
         src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0AwBGb6iG2Ndmb3SE-jKDxskr_6OUGc5IPcx3pCBscRA6fPy3Un_W7Kq0WVlHZbtEg9NgQZOYP?gv=true"
         title="Calendario per prenotare un appuntamento"
@@ -634,7 +665,7 @@ section[id]{scroll-margin-top:96px}
     <button class="accept" id="cookie-accept" type="button">Accetta le statistiche</button>
   </div>
 </div>
-<footer><div class="wrap footer-inner"><span>© Marco Nardini · Psicologo clinico e dello sport · Iscr. Ordine Toscana Albo A n. 10541</span><span><a href="#privacy">Privacy</a> · <button type="button" class="cookie-settings-link" id="cookie-settings-open">Gestisci cookie</button> · <a href="https://share.google/Dt27u2YJ6jFXcjJRJ" target="_blank" rel="noopener noreferrer">Profilo Google</a> · <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a></span></div></footer>
+<footer><div class="wrap footer-inner"><span>© Marco Nardini · Psicologo clinico e dello sport · Iscr. Ordine Toscana Albo A n. 10541</span><span><a href="#privacy">Privacy</a> · <button type="button" class="cookie-settings-link" id="cookie-settings-open">Gestisci cookie</button> · <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a></span></div></footer>
 <script>
 (function(){
   const button=document.querySelector('.menu-toggle');
@@ -830,28 +861,7 @@ section[id]{scroll-margin-top:96px}
 </script>
 
 
-<script>
-(function(){
-  const choices = document.querySelectorAll('[data-booking-choice]');
-  const feedback = document.getElementById('booking-choice-feedback');
-  const calendar = document.getElementById('booking-calendar');
-  if (!choices.length || !feedback) return;
-  const labels = {
-    clinica: 'Hai selezionato: colloquio psicologico.',
-    sport: 'Hai selezionato: consulenza in ambito sportivo.'
-  };
-  choices.forEach(function(choice){
-    choice.addEventListener('click', function(){
-      choices.forEach(function(item){
-        const selected = item === choice;
-        item.setAttribute('aria-pressed', String(selected));
-      });
-      feedback.textContent = labels[choice.dataset.bookingChoice] + ' Per entrambe le opzioni si utilizza il calendario qui sotto.';
-      if (calendar) calendar.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'start'});
-    });
-  });
-})();
-</script>
+
 
 
 <script>
@@ -901,14 +911,7 @@ section[id]{scroll-margin-top:96px}
         trackSiteEvent('whatsapp_click', {event_label: 'Pulsante WhatsApp'});
       });
     });
-
-    // Selezione dell'ambito di prenotazione: non equivale a una prenotazione completata.
-    document.querySelectorAll('[data-booking-choice]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        trackSiteEvent('booking_click', {
-          booking_type: button.getAttribute('data-booking-choice') || 'non_specificato'
-        });
-      });
+});
     });
 
     // Click sul numero di telefono.

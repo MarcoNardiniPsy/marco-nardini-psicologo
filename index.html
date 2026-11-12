@@ -382,6 +382,11 @@ section[id]{scroll-margin-top:96px}
 }
 
 .form-status{min-height:1.5em;margin:0;text-align:center;font-size:13px;color:#40545b}.form-status.success{color:#17633a}.form-status.error{color:#9b2525}
+
+.cookie-settings-link{border:0;padding:0;background:transparent;color:inherit;font:inherit;font-size:inherit;text-decoration:underline;cursor:pointer}
+.cookie-settings-link:focus-visible{outline:2px solid #78a9c5;outline-offset:4px;border-radius:2px}
+.cookie-current-status{font-size:12px!important;margin-top:-6px!important;color:#52616b!important}
+
 </style>
 <script type="application/ld+json">
 {
@@ -393,6 +398,7 @@ section[id]{scroll-margin-top:96px}
       "name": "Marco Nardini",
       "jobTitle": "Psicologo clinico e dello sport",
       "url": "https://www.marconardinipsicologo.com/",
+      "sameAs": ["https://share.google/Dt27u2YJ6jFXcjJRJ"],
       "email": "mailto:marconardini.psy@gmail.com",
       "telephone": "+393784056712",
       "hasCredential": {
@@ -620,14 +626,15 @@ section[id]{scroll-margin-top:96px}
 <button aria-label="Torna all’inizio" class="back-to-top" title="Torna all’inizio" type="button">↑</button>
 
 <div class="cookie-consent" id="cookie-consent" role="dialog" aria-live="polite" aria-label="Preferenze cookie">
-  <strong>Preferenze relative alle statistiche</strong>
-  <p>Questo sito utilizza Google Analytics per raccogliere statistiche aggregate sull’utilizzo delle pagine. Le statistiche vengono attivate solo dopo aver espresso il consenso. È possibile accettare o rifiutare.</p>
+  <strong>Preferenze relative a cookie e statistiche</strong>
+  <p>I servizi tecnici necessari al funzionamento del sito sono sempre attivi. Le statistiche tramite Google Analytics sono facoltative e vengono attivate soltanto se scegli di consentirle. Puoi modificare la scelta in qualsiasi momento dal link “Gestisci cookie” nel footer.</p>
+  <p class="cookie-current-status" id="cookie-current-status">Statistiche: scelta non ancora effettuata.</p>
   <div class="cookie-consent-actions">
-    <button class="reject" id="cookie-reject" type="button">Rifiuta</button>
+    <button class="reject" id="cookie-reject" type="button">Rifiuta le statistiche</button>
     <button class="accept" id="cookie-accept" type="button">Accetta le statistiche</button>
   </div>
 </div>
-<footer><div class="wrap footer-inner"><span>© Marco Nardini · Psicologo clinico e dello sport · Iscr. Ordine Toscana Albo A n. 10541</span><span><a href="#privacy">Privacy</a> · <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a></span></div></footer>
+<footer><div class="wrap footer-inner"><span>© Marco Nardini · Psicologo clinico e dello sport · Iscr. Ordine Toscana Albo A n. 10541</span><span><a href="#privacy">Privacy</a> · <button type="button" class="cookie-settings-link" id="cookie-settings-open">Gestisci cookie</button> · <a href="https://share.google/Dt27u2YJ6jFXcjJRJ" target="_blank" rel="noopener noreferrer">Profilo Google</a> · <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a></span></div></footer>
 <script>
 (function(){
   const button=document.querySelector('.menu-toggle');
@@ -741,6 +748,10 @@ section[id]{scroll-margin-top:96px}
   const measurementId = 'G-3934P1P88B';
   const consentKey = 'marcoNardiniAnalyticsConsent';
   const banner = document.getElementById('cookie-consent');
+  const status = document.getElementById('cookie-current-status');
+  const settingsButton = document.getElementById('cookie-settings-open');
+  const accept = document.getElementById('cookie-accept');
+  const reject = document.getElementById('cookie-reject');
 
   function loadAnalytics(){
     if (window.__marcoAnalyticsLoaded) return;
@@ -750,32 +761,71 @@ section[id]{scroll-margin-top:96px}
     window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', measurementId);
-
     const script = document.createElement('script');
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
     document.head.appendChild(script);
   }
 
-  function closeBanner(){ if(banner) banner.classList.remove('visible'); }
+  function showStatus(value){
+    if (!status) return;
+    if (value === 'accepted') status.textContent = 'Stato attuale: statistiche Google Analytics consentite.';
+    else if (value === 'rejected') status.textContent = 'Stato attuale: statistiche Google Analytics rifiutate.';
+    else status.textContent = 'Statistiche: scelta non ancora effettuata.';
+  }
+
+  function openPreferences(){
+    if (!banner) return;
+    showStatus(localStorage.getItem(consentKey));
+    banner.classList.add('visible');
+    if (accept) accept.focus();
+  }
+
+  function closePreferences(){
+    if (banner) banner.classList.remove('visible');
+  }
+
+  function clearAnalyticsCookies(){
+    const names = document.cookie.split(';').map(function(cookie){
+      return cookie.trim().split('=')[0];
+    }).filter(function(name){
+      return name === '_ga' || name.indexOf('_ga_') === 0 || name === '_gid' || name === '_gat';
+    });
+    names.forEach(function(name){
+      document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+      document.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname + '; SameSite=Lax';
+      const parts = location.hostname.split('.');
+      if (parts.length > 2) {
+        const parentDomain = '.' + parts.slice(-2).join('.');
+        document.cookie = name + '=; Max-Age=0; path=/; domain=' + parentDomain + '; SameSite=Lax';
+      }
+    });
+  }
 
   const savedConsent = localStorage.getItem(consentKey);
-  if(savedConsent === 'accepted') loadAnalytics();
-  else if(savedConsent !== 'rejected' && banner) banner.classList.add('visible');
+  if (savedConsent === 'accepted') loadAnalytics();
+  else if (savedConsent !== 'rejected' && banner) banner.classList.add('visible');
+  showStatus(savedConsent);
 
-  const accept = document.getElementById('cookie-accept');
-  const reject = document.getElementById('cookie-reject');
-
-  if(accept) accept.addEventListener('click', function(){
+  if (accept) accept.addEventListener('click', function(){
     localStorage.setItem(consentKey, 'accepted');
-    closeBanner();
+    showStatus('accepted');
+    closePreferences();
     loadAnalytics();
   });
 
-  if(reject) reject.addEventListener('click', function(){
+  if (reject) reject.addEventListener('click', function(){
+    const previous = localStorage.getItem(consentKey);
     localStorage.setItem(consentKey, 'rejected');
-    closeBanner();
+    showStatus('rejected');
+    closePreferences();
+    if (previous === 'accepted') {
+      clearAnalyticsCookies();
+      window.location.reload();
+    }
   });
+
+  if (settingsButton) settingsButton.addEventListener('click', openPreferences);
 })();
 </script>
 

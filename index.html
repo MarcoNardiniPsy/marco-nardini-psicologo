@@ -969,39 +969,48 @@ section[id]{scroll-margin-top:96px}
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Click sul pulsante WhatsApp.
-    document.querySelectorAll('a.whatsapp-float').forEach(function (link) {
+  function bindTrackingEvents() {
+    // WhatsApp
+    document.querySelectorAll('a.whatsapp-float, a[href*="wa.me/"]').forEach(function (link) {
       link.addEventListener('click', function () {
-        trackSiteEvent('whatsapp_click', {event_label: 'Pulsante WhatsApp'});
+        trackSiteEvent('whatsapp_click', {event_label: 'Collegamento WhatsApp'});
       });
     });
-});
-    });
 
-    // Click sul numero di telefono.
+    // Telefono
     document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
       link.addEventListener('click', function () {
         trackSiteEvent('phone_click', {event_label: 'Link telefono'});
       });
     });
 
-    // Click sui collegamenti email.
+    // Email
     document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
       link.addEventListener('click', function () {
         trackSiteEvent('email_click', {event_label: 'Link email'});
       });
     });
 
-    // Click per aprire le indicazioni stradali.
+    // Indicazioni stradali
     document.querySelectorAll('a.map-link').forEach(function (link, index) {
       link.addEventListener('click', function () {
-        trackSiteEvent('directions_click', {
-          location_number: String(index + 1)
-        });
+        trackSiteEvent('directions_click', {location_number: String(index + 1)});
       });
     });
-  });
+
+    // Eventuali link esterni alla pagina di prenotazione.
+    document.querySelectorAll('a[href*="calendar.google.com/calendar/appointments"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        trackSiteEvent('booking_click', {event_label: 'Link prenotazione Google Calendar'});
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindTrackingEvents);
+  } else {
+    bindTrackingEvents();
+  }
 })();
 </script>
 

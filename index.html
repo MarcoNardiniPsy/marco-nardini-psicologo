@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Marco Nardini, psicologo clinico e dello sport a Firenze. Sostegno psicologico per adolescenti dai 13 anni e adulti, mental training e psicologia dello sport. Riceve in presenza a Firenze e online." name="description"/>
+<meta content="Marco Nardini, psicologo a Firenze. Consulenza psicologica per adolescenti dai 13 anni e adulti, psicologia dello sport e mental training. Riceve in studio e online." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link rel="canonical" href="https://www.marconardinipsicologo.com/"/>
 <link rel="icon" type="image/png" href="/favicon.png"/>
@@ -80,6 +80,11 @@ footer{padding:28px 0;background:#00171F;color:#d7e0e5;font-size:12px} .footer-i
 .privacy .section-head p{font-size:13px;margin:4px 0}
 .privacy h3{font-size:15px;margin:14px 0 5px}
 .privacy p{font-size:12px;line-height:1.55;margin:5px 0;max-width:100%}
+.privacy-third-party{font-size:10px;line-height:1.4}
+.privacy-third-party h3{font-size:13px;margin:10px 0 4px}
+.privacy-third-party p{font-size:10px;line-height:1.4;margin:4px 0}
+.privacy-third-party ul{font-size:10px;line-height:1.4;margin:4px 0;padding-left:18px}
+.privacy-third-party li{margin:2px 0}
 
 
 /* Piccoli elementi interattivi */
@@ -296,10 +301,9 @@ header{position:sticky;top:0;z-index:1000;backdrop-filter:blur(12px);background:
 .cookie-consent p{margin:0 0 16px;color:#40545b;font-size:14px;line-height:1.55}
 .cookie-consent strong{display:block;margin-bottom:6px;font-family:Georgia,serif;font-size:21px;font-weight:400;color:#00171F}
 .cookie-consent-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.cookie-consent-actions button{border:1px solid #003459;border-radius:24px;padding:10px 18px;font:inherit;font-size:13px;cursor:pointer}
-.cookie-consent-actions .accept{background:#003459;color:#fff}
-.cookie-consent-actions .reject{background:#fff;color:#003459}
+.cookie-consent-actions button{border:1px solid #003459;border-radius:24px;padding:10px 18px;font:inherit;font-size:13px;cursor:pointer;background:#003459;color:#fff}
 .cookie-consent-actions button:hover{opacity:.86}
+.cookie-consent-actions button:focus-visible{outline:2px solid #78a9c5;outline-offset:3px}
 @media(max-width:600px){
  .cookie-consent{left:10px;right:10px;bottom:10px;padding:18px}
  .cookie-consent-actions{justify-content:stretch}
@@ -652,7 +656,50 @@ section[id]{scroll-margin-top:96px}
 <p class="form-status" id="contact-form-status" role="status" aria-live="polite"></p>
 </form></div>
 </div></section>
-<section class="privacy" id="privacy"><div class="wrap"><div class="section-head"><div class="eyebrow">Trasparenza</div><h2>Privacy e trattamento dei dati</h2><p>Informazioni essenziali sul contatto attraverso questo sito.</p></div><h3>Titolare del trattamento</h3><p>Il titolare del trattamento è Marco Nardini, psicologo, contattabile all’indirizzo <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a>.</p><h3>Dati forniti volontariamente</h3><p>Se si sceglie di contattare il professionista via email o telefono, i dati comunicati saranno utilizzati per rispondere alla richiesta e per le eventuali attività preliminari alla definizione di un appuntamento. Il modulo presente nella pagina apre il programma di posta elettronica del dispositivo: i dati non vengono trasmessi direttamente a un server tramite questo sito.</p><h3>Servizi esterni e statistiche</h3><p>Il sito utilizza Google Analytics 4 per raccogliere statistiche sull’utilizzo delle pagine. Il servizio viene attivato solo dopo il consenso espresso attraverso il banner iniziale; in caso di rifiuto, Google Analytics non viene caricato. Per maggiori informazioni sul trattamento dei dati da parte di Google è possibile consultare le informative del fornitore. I collegamenti a Google Maps aprono un servizio esterno solo quando vengono selezionati; da quel momento si applicano le condizioni e le informative del relativo fornitore.</p><h3>Diritti dell’interessato</h3><p>È possibile esercitare i diritti previsti dagli articoli 15–22 del Regolamento (UE) 2016/679, nei limiti e con le modalità previste dalla normativa, scrivendo all’indirizzo email sopra indicato. Resta inoltre possibile proporre reclamo al Garante per la protezione dei dati personali.</p><p><strong>Nota prima della pubblicazione:</strong> questa informativa è una base descrittiva e deve essere verificata e completata dal titolare con le informazioni effettive su tempi di conservazione, basi giuridiche, eventuali ulteriori strumenti utilizzati dal sito e dati fiscali/professionali da pubblicare. La piattaforma che ospita il sito può inoltre trattare dati tecnici di navigazione secondo la propria informativa.</p></div></section>
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Trasparenza</div>
+      <h2>Privacy e trattamento dei dati</h2>
+      <p>Informazioni sul trattamento dei dati personali effettuato attraverso questo sito.</p>
+    </div>
+
+    <h3>Titolare del trattamento</h3>
+    <p>Il titolare del trattamento è Marco Nardini, psicologo, contattabile all’indirizzo
+      <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a>.
+    </p>
+
+    <h3>Dati trattati e finalità</h3>
+    <p>Quando invii una richiesta attraverso il modulo di contatto, il sito raccoglie i dati inseriti nei campi: nome e cognome, indirizzo email, eventuale numero di telefono e contenuto del messaggio. I dati sono utilizzati per ricevere e gestire la richiesta, ricontattarti e, se richiesto, svolgere attività preliminari all’organizzazione di un appuntamento. Il numero di telefono è facoltativo.</p>
+    <p>Il modulo trasmette i dati al servizio Formspree, utilizzato per la gestione e l’inoltro delle richieste. Ti invitiamo a non inserire nel messaggio informazioni sanitarie, diagnosi o altri dati personali particolari: il modulo è destinato esclusivamente a una prima richiesta di contatto.</p>
+    <p>Se contatti il professionista tramite telefono o email, i dati comunicati saranno utilizzati per rispondere alla richiesta e gestire i successivi contatti.</p>
+
+    <div class="privacy-third-party">
+      <h3>Servizi di terze parti</h3>
+      <p>Il sito utilizza servizi forniti da soggetti terzi che possono comportare la trasmissione di dati tecnici, come l’indirizzo IP e informazioni sul browser e sul dispositivo:</p>
+      <ul>
+        <li><strong>Formspree:</strong> riceve i dati inviati tramite il modulo di contatto e li inoltra al titolare.</li>
+        <li><strong>Google Maps:</strong> le mappe sono incorporate direttamente nella pagina. Il caricamento delle mappe può comportare la comunicazione di dati tecnici a Google.</li>
+        <li><strong>Google Calendar:</strong> il calendario per la prenotazione è incorporato nella pagina. La sua visualizzazione e l’eventuale procedura di prenotazione sono gestite tramite il servizio Google.</li>
+        <li><strong>Google Analytics 4:</strong> raccoglie statistiche sull’utilizzo del sito. Il relativo script viene caricato soltanto dopo che l’utente ha espresso il consenso attraverso il banner. In caso di rifiuto, Google Analytics non viene caricato.</li>
+        <li><strong>GitHub Pages:</strong> il sito è ospitato tramite questo servizio; il fornitore può trattare dati tecnici necessari alla distribuzione e alla sicurezza delle pagine.</li>
+      </ul>
+      <p>Per informazioni sulle modalità di trattamento adottate da questi fornitori è necessario consultare le rispettive informative privacy e verificare i ruoli e gli accordi applicabili al rapporto con ciascun fornitore.</p>
+    </div>
+
+    <h3>Cookie e preferenze</h3>
+    <p>Il sito utilizza una preferenza memorizzata nel browser per ricordare la scelta relativa alle statistiche di Google Analytics. Le statistiche sono facoltative e vengono attivate soltanto dopo il consenso. Puoi modificare la scelta in qualsiasi momento tramite il collegamento “Gestisci cookie” presente nel footer.</p>
+    <p>Google Maps e Google Calendar sono incorporati nella pagina e possono comunicare dati a Google anche indipendentemente dalla scelta relativa alle statistiche. Il banner attualmente presente gestisce il consenso a Google Analytics, non le impostazioni di caricamento di questi contenuti incorporati.</p>
+
+    <h3>Base giuridica e tempi di conservazione</h3>
+    <p>La base giuridica applicabile alle richieste di contatto e ai successivi adempimenti deve essere individuata dal titolare in relazione alla concreta gestione della richiesta. Le statistiche tramite Google Analytics si basano sul consenso espresso dall’utente. I tempi di conservazione dei dati inviati tramite il modulo e delle eventuali comunicazioni successive devono essere definiti dal titolare e indicati in modo preciso prima della pubblicazione definitiva di questa informativa.</p>
+
+    <h3>Diritti dell’interessato</h3>
+    <p>Puoi esercitare i diritti previsti dagli articoli 15–22 del Regolamento (UE) 2016/679, nei limiti e con le modalità previste dalla normativa, scrivendo a <a href="mailto:marconardini.psy@gmail.com">marconardini.psy@gmail.com</a>. Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali.</p>
+
+    <p><strong>Verifica necessaria prima della pubblicazione:</strong> questa è una bozza informativa basata sulle funzionalità individuate nel codice del sito, non una verifica legale della conformità GDPR. Il titolare deve completare e approvare almeno: dati identificativi e recapiti professionali completi; basi giuridiche e tempi di conservazione effettivi; ruoli, accordi e informative dei fornitori (Formspree, Google e GitHub); eventuali trasferimenti di dati fuori dallo Spazio economico europeo; gestione dei dati eventualmente contenuti nei messaggi ricevuti. La formulazione definitiva dovrebbe essere verificata da un consulente privacy.</p>
+  </div>
+</section>
 </main>
 <button aria-label="Torna all’inizio" class="back-to-top" title="Torna all’inizio" type="button">↑</button>
 
@@ -778,6 +825,7 @@ section[id]{scroll-margin-top:96px}
 (function(){
   const measurementId = 'G-3934P1P88B';
   const consentKey = 'marcoNardiniAnalyticsConsent';
+  const consentDateKey = 'marcoNardiniAnalyticsConsentDate';
   const banner = document.getElementById('cookie-consent');
   const status = document.getElementById('cookie-current-status');
   const settingsButton = document.getElementById('cookie-settings-open');
@@ -816,6 +864,11 @@ section[id]{scroll-margin-top:96px}
     if (banner) banner.classList.remove('visible');
   }
 
+  function saveConsent(value){
+    localStorage.setItem(consentKey, value);
+    localStorage.setItem(consentDateKey, String(Date.now()));
+  }
+
   function clearAnalyticsCookies(){
     const names = document.cookie.split(';').map(function(cookie){
       return cookie.trim().split('=')[0];
@@ -833,24 +886,36 @@ section[id]{scroll-margin-top:96px}
     });
   }
 
-  const savedConsent = localStorage.getItem(consentKey);
+  let savedConsent = localStorage.getItem(consentKey);
+  const savedDate = Number(localStorage.getItem(consentDateKey));
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+  // Se la preferenza precedente non ha una data verificabile, oppure ha almeno
+  // sei mesi, viene richiesta una nuova scelta prima di caricare Analytics.
+  if (savedConsent && (!savedDate || !Number.isFinite(savedDate) || savedDate <= sixMonthsAgo.getTime())) {
+    localStorage.removeItem(consentKey);
+    localStorage.removeItem(consentDateKey);
+    savedConsent = null;
+  }
+
   if (savedConsent === 'accepted') loadAnalytics();
   else if (savedConsent !== 'rejected' && banner) banner.classList.add('visible');
   showStatus(savedConsent);
 
   if (accept) accept.addEventListener('click', function(){
-    localStorage.setItem(consentKey, 'accepted');
+    saveConsent('accepted');
     showStatus('accepted');
     closePreferences();
     loadAnalytics();
   });
 
   if (reject) reject.addEventListener('click', function(){
-    const previous = localStorage.getItem(consentKey);
-    localStorage.setItem(consentKey, 'rejected');
+    const analyticsWasLoaded = !!window.__marcoAnalyticsLoaded;
+    saveConsent('rejected');
     showStatus('rejected');
     closePreferences();
-    if (previous === 'accepted') {
+    if (analyticsWasLoaded) {
       clearAnalyticsCookies();
       window.location.reload();
     }

@@ -459,7 +459,8 @@ section[id]{scroll-margin-top:96px}
         {
           "@id": "https://www.marconardinipsicologo.com/#studio-nexo"
         }
-      ]
+      ],
+      "image": "https://www.marconardinipsicologo.com/marco-nardini-ritratto.webp"
     },
     {
       "@type": "ProfessionalService",
@@ -492,7 +493,8 @@ section[id]{scroll-margin-top:96px}
         "Psicologia dello sport",
         "Mental training"
       ],
-      "description": "Servizi di psicologia clinica e dello sport a Firenze, in presenza e online."
+      "description": "Servizi di psicologia clinica e dello sport a Firenze, in presenza e online.",
+      "image": "https://www.marconardinipsicologo.com/marco-nardini-ritratto.webp"
     },
     {
       "@type": "ProfessionalService",
@@ -525,7 +527,8 @@ section[id]{scroll-margin-top:96px}
       "availableChannel": {
         "@type": "ServiceChannel",
         "serviceUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0AwBGb6iG2Ndmb3SE-jKDxskr_6OUGc5IPcx3pCBscRA6fPy3Un_W7Kq0WVlHZbtEg9NgQZOYP?gv=true"
-      }
+      },
+      "image": "https://www.marconardinipsicologo.com/marco-nardini-ritratto.webp"
     },
     {
       "@type": "WebSite",
@@ -969,48 +972,39 @@ section[id]{scroll-margin-top:96px}
     }
   }
 
-  function bindTrackingEvents() {
-    // WhatsApp
-    document.querySelectorAll('a.whatsapp-float, a[href*="wa.me/"]').forEach(function (link) {
+  document.addEventListener('DOMContentLoaded', function () {
+    // Click sul pulsante WhatsApp.
+    document.querySelectorAll('a.whatsapp-float').forEach(function (link) {
       link.addEventListener('click', function () {
-        trackSiteEvent('whatsapp_click', {event_label: 'Collegamento WhatsApp'});
+        trackSiteEvent('whatsapp_click', {event_label: 'Pulsante WhatsApp'});
       });
     });
+});
+    });
 
-    // Telefono
+    // Click sul numero di telefono.
     document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
       link.addEventListener('click', function () {
         trackSiteEvent('phone_click', {event_label: 'Link telefono'});
       });
     });
 
-    // Email
+    // Click sui collegamenti email.
     document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
       link.addEventListener('click', function () {
         trackSiteEvent('email_click', {event_label: 'Link email'});
       });
     });
 
-    // Indicazioni stradali
+    // Click per aprire le indicazioni stradali.
     document.querySelectorAll('a.map-link').forEach(function (link, index) {
       link.addEventListener('click', function () {
-        trackSiteEvent('directions_click', {location_number: String(index + 1)});
+        trackSiteEvent('directions_click', {
+          location_number: String(index + 1)
+        });
       });
     });
-
-    // Eventuali link esterni alla pagina di prenotazione.
-    document.querySelectorAll('a[href*="calendar.google.com/calendar/appointments"]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        trackSiteEvent('booking_click', {event_label: 'Link prenotazione Google Calendar'});
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindTrackingEvents);
-  } else {
-    bindTrackingEvents();
-  }
+  });
 })();
 </script>
 
